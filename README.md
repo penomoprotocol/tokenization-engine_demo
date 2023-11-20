@@ -1,6 +1,6 @@
-# Tokenization Engine Smart Contracts (Demo)
+# Tokenization-Engine Smart Contracts (MVP)
 
-This repository comprises a collection of smart contracts designed for tokenizing assets, with a specific focus on battery assets. The contracts are implemented in Solidity and intended for deployment on peaq Network via EVM-bridge.
+This repository comprises a collection of smart contracts designed for tokenizing assets, with a specific focus on battery assets used for our Minimum Viable Product (MVP) v1. The contracts are implemented in Solidity and intended for deployment on peaq Network via EVM-bridge.
 
 ## Overview
 
@@ -67,3 +67,4 @@ The system is composed of several key contracts:
 
 - Hardhat will automatically create a local Ethereum environment for you, with several accounts pre-funded with Ether.
 - Adjust gas prices and limits as necessary, depending on the Ethereum network's conditions.
+- This public repository does not showcase our commit history and is meant for public access and review only.
