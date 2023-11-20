@@ -1,4 +1,4 @@
-# Tokenization Smart Contracts
+# Tokenization Engine Smart Contracts (Demo)
 
 This repository comprises a collection of smart contracts designed for tokenizing assets, with a specific focus on battery assets. The contracts are implemented in Solidity and intended for deployment on the Ethereum blockchain.
 
