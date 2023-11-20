@@ -8,6 +8,7 @@ contract GlobalStateContract {
 
     uint256 public penomoFee;
 
+    // Events   
     event InvestorVerified(address indexed investor);
     event CompanyVerified(address indexed company);
     event PenomoFeeUpdated(uint256 newFee);

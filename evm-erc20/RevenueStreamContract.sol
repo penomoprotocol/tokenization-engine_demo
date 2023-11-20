@@ -14,6 +14,7 @@ contract RevenueStreamContract {
 
     mapping(address => bool) public authorizedBatteries; // Mapping of authorized battery wallets
 
+    // Events
     event RentalStarted(uint256 startKWh);
     event RentalStopped(uint256 totalAmount);
 

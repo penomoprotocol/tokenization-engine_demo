@@ -16,13 +16,10 @@ contract TokenContractERC20 is ERC20 {
     struct Battery {
         string DID; // Battery DID
         string CID; // Battery Data CID (IPFS)
-        uint256 revenueGoal; // Battery Revenue Goal in wei for contract term
+        uint256 revenueGoal; // Battery Revenue Goal in wei for contract term duration
     }
     Battery[] public batteries;
     address[] public tokenHolders;
-
-    // Events for debugging
-    event Debug(uint256 allowance);
 
     struct ConstructorArgs {
         address penomoWallet;
@@ -65,8 +62,6 @@ contract TokenContractERC20 is ERC20 {
         // Set the allowance for the ServiceContract
         _approve(address(this), args.serviceContractAddress, maxTokenSupply);
 
-        // Emit allowance for debugging
-        emit Debug(allowance(address(this), args.serviceContractAddress));
     }
 
     modifier onlyPenomoWallet() {
@@ -115,7 +110,6 @@ contract TokenContractERC20 is ERC20 {
     }
 
     function _beforeTokenTransfer(
-        //address from,
         address to
     ) internal //uint256 amount
     {

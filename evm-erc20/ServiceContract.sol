@@ -14,12 +14,9 @@ contract ServiceContract {
     GlobalStateContract public globalState;
     uint256 public revenueSharePercentage;
 
+    // Events
     event TokensPurchased(address indexed investor, uint256 amount);
     event ReceivedFundsFromRevenueStream(address indexed from, uint256 amount);
-
-    // For debugging
-    event EtherReceived(uint256 value);
-    event EtherRequired(uint256 requiredEther);
 
     constructor(address _globalStateAddress) {
         owner = msg.sender;
@@ -48,11 +45,7 @@ contract ServiceContract {
         // Ensure the correct amount of wei is sent to receive amount of tokens (also in wei).
         uint256 requiredWei = (amount * tokenContractERC20.tokenPrice()) /
             10 ** 18;
-        // require(msg.value >= requiredWei, "Incorrect Wei sent");
-
-        // For debugging
-        emit EtherReceived(msg.value);
-        emit EtherRequired(requiredWei);
+        require(msg.value >= requiredWei, "Incorrect Wei sent");
 
         // Transfer the tokens to the investor
         tokenContractERC20.transferFrom(
@@ -61,7 +54,7 @@ contract ServiceContract {
             amount
         );
 
-        // Calculate Penomo's fee from the GlobalStateContract and the amount to send to the LiquidityContract
+        // Calculate penomo's fee from the GlobalStateContract and the amount to send to the LiquidityContract
         uint256 feeAmount = (msg.value * globalState.penomoFee()) / 10000;
         uint256 liquidityAmount = msg.value - feeAmount;
 
@@ -74,7 +67,7 @@ contract ServiceContract {
     }
 
     function receiveFundsFromRevenueStream() external payable {
-        // Calculate the amount after deducting Penomo's fee
+        // Calculate the amount after deducting penomo's fee
         uint256 amountAfterFee = (msg.value *
             (10000 - globalState.penomoFee())) / 10000;
 
@@ -94,7 +87,7 @@ contract ServiceContract {
         emit ReceivedFundsFromRevenueStream(msg.sender, msg.value);
     }
 
-    // Allows the owner to withdraw the accumulated Ether (Penomo's fees)
+    // Allows the owner to withdraw the accumulated Ether (penomo's fees)
     function withdraw() public onlyOwner {
         payable(owner).transfer(address(this).balance);
     }
